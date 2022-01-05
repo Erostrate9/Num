@@ -7,6 +7,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "C:/Users/75912/Desktop/pi/big_int.c" "C:/Users/75912/Desktop/pi/cmake-build-debug/CMakeFiles/pi.dir/big_int.c.obj"
   "C:/Users/75912/Desktop/pi/list.c" "C:/Users/75912/Desktop/pi/cmake-build-debug/CMakeFiles/pi.dir/list.c.obj"
   "C:/Users/75912/Desktop/pi/main.c" "C:/Users/75912/Desktop/pi/cmake-build-debug/CMakeFiles/pi.dir/main.c.obj"
+  "C:/Users/75912/Desktop/pi/rational.c" "C:/Users/75912/Desktop/pi/cmake-build-debug/CMakeFiles/pi.dir/rational.c.obj"
   "C:/Users/75912/Desktop/pi/unsigned.c" "C:/Users/75912/Desktop/pi/cmake-build-debug/CMakeFiles/pi.dir/unsigned.c.obj"
   )
 set(CMAKE_C_COMPILER_ID "GNU")

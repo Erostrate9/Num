@@ -1,6 +1,3 @@
-// Author(s): Erostrate9
-// 4/1/2022
-//
 
 #ifndef PI_UNSIGNED_H
 #define PI_UNSIGNED_H

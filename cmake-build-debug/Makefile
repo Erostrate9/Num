@@ -223,6 +223,33 @@ main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\pi.dir\build.make CMakeFiles/pi.dir/main.c.s
 .PHONY : main.c.s
 
+rational.obj: rational.c.obj
+
+.PHONY : rational.obj
+
+# target to build an object file
+rational.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\pi.dir\build.make CMakeFiles/pi.dir/rational.c.obj
+.PHONY : rational.c.obj
+
+rational.i: rational.c.i
+
+.PHONY : rational.i
+
+# target to preprocess a source file
+rational.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\pi.dir\build.make CMakeFiles/pi.dir/rational.c.i
+.PHONY : rational.c.i
+
+rational.s: rational.c.s
+
+.PHONY : rational.s
+
+# target to generate assembly for a file
+rational.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\pi.dir\build.make CMakeFiles/pi.dir/rational.c.s
+.PHONY : rational.c.s
+
 unsigned.obj: unsigned.c.obj
 
 .PHONY : unsigned.obj
@@ -268,6 +295,9 @@ help:
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... rational.obj
+	@echo ... rational.i
+	@echo ... rational.s
 	@echo ... unsigned.obj
 	@echo ... unsigned.i
 	@echo ... unsigned.s

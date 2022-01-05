@@ -2,6 +2,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/pi.dir/big_int.c.obj"
   "CMakeFiles/pi.dir/list.c.obj"
   "CMakeFiles/pi.dir/main.c.obj"
+  "CMakeFiles/pi.dir/rational.c.obj"
   "CMakeFiles/pi.dir/unsigned.c.obj"
   "libpi.dll.a"
   "pi.exe"

@@ -89,6 +89,12 @@
 		<Unit filename="C:/Users/75912/Desktop/pi/main.c">
 			<Option target="pi"/>
 		</Unit>
+		<Unit filename="C:/Users/75912/Desktop/pi/rational.c">
+			<Option target="pi"/>
+		</Unit>
+		<Unit filename="C:/Users/75912/Desktop/pi/rational.h">
+			<Option target="pi"/>
+		</Unit>
 		<Unit filename="C:/Users/75912/Desktop/pi/unsigned.c">
 			<Option target="pi"/>
 		</Unit>

@@ -1,6 +1,4 @@
-// Author(s): Erostrate9
-// 5/1/2022
-//
+
 
 #ifndef PI_BIG_INT_H
 #define PI_BIG_INT_H

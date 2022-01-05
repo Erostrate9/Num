@@ -1,103 +1,128 @@
 
+#include <math.h>
 #include <stdio.h>
-#include "big_int.h"
+#include <stdlib.h>
+#include "rational.h"
 
 // -----------------------------------------------------------------------------
 
 typedef long long ll;
 
-ll big_int_test(ll, ll, ll, ll, int, int, int, int, int);
+ll big_rat_test(ll, ll, ll, ll, ll, ll, ll, ll, int, int, int, int);
 
 // -----------------------------------------------------------------------------
 
 int main(void)
 {
-    ll errors = 0;
-    errors += big_int_test(-200, 200, -1000, 1000,  1, 1, 1, 1, 1);
-     errors += big_int_test(-1000, 1000, -200, 200, 1, 1, 1, 1, 1);
+    // ll errors =
+    //     big_rat_test(-30, 40, -200, -160, -130, -110, 900, 1100, 1, 1, 1, 1);
+    ll errors =0;
 
-    printf("big int test errors: %lld\n\n", errors);
+    printf("big rational test errors: %lld\n\n", errors);
     return 0;
 }
 
 // -----------------------------------------------------------------------------
 
-ll big_int_test(
-        ll  i_from,
-        ll  i_to,
-        ll  j_from,
-        ll  j_to,
-        int test_cmp,
-        int test_add,
-        int test_sub,
-        int test_mul,
-        int test_div)
+int equal(double x, double y)
+{
+    return fabs(x - y) < 1E-8;
+}
+
+ll big_rat_test(
+        ll x_from, ll x_to,
+        ll y_from, ll y_to,
+        ll n_from, ll n_to,
+        ll m_from, ll m_to,
+        int test_add, int test_sub,
+        int test_mul, int test_div)
 {
     ll errors = 0;
-    for (ll i = i_from; i <= i_to; ++i)
-        for (ll j = j_from; j <= j_to; ++j) {
-            BigInt* a = big_int_from_ll(i);
-            BigInt* b = big_int_from_ll(j);
+    for (ll x = x_from; x <= x_to; ++x)
+        for (ll y = y_from; y <= y_to; ++y)
+            for (ll n = n_from; n <= n_to; ++n)
+                for (ll m = m_from; m <= m_to; ++m) {
+                    BigRat* i = big_rat_from_ll(x, y);
+                    BigRat* j = big_rat_from_ll(n, m);
 
-            BigInt* s = 0;
-            BigInt* d = 0;
-            BigInt* p = 0;
-            BigInt* q = 0;
-            BigInt* r = 0;
+                    BigRat* a = big_rat_add(i, j);
+                    BigRat* b = big_rat_sub(i, j);
+                    BigRat* c = big_rat_mul(i, j);
+                    BigRat* d = big_rat_div(i, j);
 
-            if (test_cmp) {
-                int cmp = big_int_cmp(a, b);
-                if (!((cmp == 1 && i > j) ||
-                      (cmp == 0 && i == j) ||
-                      (cmp == -1 && i < j)))
-                {
-                    printf("error comxring %lld and %lld\n", i, j);
-                    ++errors;
+                    char* si = big_rat_to_str(i);
+                    char* sj = big_rat_to_str(j);
+                    char* sa = big_rat_to_str(a);
+                    char* sb = big_rat_to_str(b);
+                    char* sc = big_rat_to_str(c);
+                    char* sd = big_rat_to_str(d);
+
+                    if (test_add && y != 0 && m != 0) {
+                        ll num, denom;
+                        big_rat_to_ll(a, &num, &denom);
+
+                        double aa = x * 1.0 / y;
+                        double bb = n * 1.0 / m;
+                        double cc = num * 1.0 / denom;
+                        if (!equal(aa + bb, cc)) {
+                            printf("error %s + %s\n", si, sj);
+                            ++errors;
+                        }
+                    }
+
+                    if (test_sub && y != 0 && m != 0) {
+                        ll num, denom;
+                        big_rat_to_ll(b, &num, &denom);
+
+                        double aa = x * 1.0 / y;
+                        double bb = n * 1.0 / m;
+                        double cc = num * 1.0 / denom;
+                        if (!equal(aa - bb, cc)) {
+                            printf("error %s - %s\n", si, sj);
+                            ++errors;
+                        }
+                    }
+
+                    if (test_mul && y != 0 && m != 0) {
+                        ll num, denom;
+                        big_rat_to_ll(c, &num, &denom);
+
+                        double aa = x * 1.0 / y;
+                        double bb = n * 1.0 / m;
+                        double cc = num * 1.0 / denom;
+                        if (!equal(aa * bb, cc)) {
+                            printf("error %s * %s\n", si, sj);
+                            ++errors;
+                        }
+                    }
+
+                    if (test_div && y != 0 && m != 0 && n != 0) {
+                        ll num, denom;
+                        big_rat_to_ll(d, &num, &denom);
+
+                        double aa = x * 1.0 / y;
+                        double bb = n * 1.0 / m;
+                        double cc = num * 1.0 / denom;
+                        if (!equal(aa / bb, cc)) {
+                            printf("error %s / %s\n", si, sj);
+                            ++errors;
+                        }
+                    }
+
+                    big_rat_free(i);
+                    big_rat_free(j);
+                    big_rat_free(a);
+                    big_rat_free(b);
+                    big_rat_free(c);
+                    big_rat_free(d);
+
+                    free(si);
+                    free(sj);
+                    free(sa);
+                    free(sb);
+                    free(sc);
+                    free(sd);
                 }
-            }
-
-            if (test_add) {
-                s = big_int_add(a, b);
-                if (big_int_to_ll(s) != i + j) {
-                    printf("error adding %lld and %lld\n", i, j);
-                    ++errors;
-                }
-            }
-
-            if (test_sub) {
-                d = big_int_sub(a, b);
-                if (big_int_to_ll(d) != i - j) {
-                    printf("error %lld minus %lld\n", i, j);
-                    ++errors;
-                }
-            }
-
-            if (test_mul) {
-                p = big_int_mul(a, b);
-                if (big_int_to_ll(p) != i * j) {
-                    printf("error multiplying %lld by %lld\n", i, j);
-                    ++errors;
-                }
-            }
-
-            if (test_div && j) {
-                q = big_int_div(a, b, &r);
-                if (big_int_to_ll(q) != i / j ||
-                    big_int_to_ll(r) != i % j)
-                {
-                    printf("error dividing %lld by %lld\n", i, j);
-                    ++errors;
-                }
-            }
-
-            big_int_free(a);
-            big_int_free(b);
-            big_int_free(s);
-            big_int_free(d);
-            big_int_free(p);
-            big_int_free(q);
-            big_int_free(r);
-        }
     return errors;
 }
 

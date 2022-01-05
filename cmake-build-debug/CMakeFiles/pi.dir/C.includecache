@@ -13,8 +13,24 @@ C:/Users/75912/Desktop/pi/unsigned.h
 C:/Users/75912/Desktop/pi/list.h
 
 C:/Users/75912/Desktop/pi/main.c
+math.h
+-
 stdio.h
 -
+stdlib.h
+-
+rational.h
+C:/Users/75912/Desktop/pi/rational.h
+
+C:/Users/75912/Desktop/pi/rational.c
+stdlib.h
+-
+string.h
+-
+rational.h
+C:/Users/75912/Desktop/pi/rational.h
+
+C:/Users/75912/Desktop/pi/rational.h
 big_int.h
 C:/Users/75912/Desktop/pi/big_int.h
 

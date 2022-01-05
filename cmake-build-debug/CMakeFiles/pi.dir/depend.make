@@ -12,7 +12,14 @@ CMakeFiles/pi.dir/list.c.obj: ../list.h
 CMakeFiles/pi.dir/main.c.obj: ../big_int.h
 CMakeFiles/pi.dir/main.c.obj: ../list.h
 CMakeFiles/pi.dir/main.c.obj: ../main.c
+CMakeFiles/pi.dir/main.c.obj: ../rational.h
 CMakeFiles/pi.dir/main.c.obj: ../unsigned.h
+
+CMakeFiles/pi.dir/rational.c.obj: ../big_int.h
+CMakeFiles/pi.dir/rational.c.obj: ../list.h
+CMakeFiles/pi.dir/rational.c.obj: ../rational.c
+CMakeFiles/pi.dir/rational.c.obj: ../rational.h
+CMakeFiles/pi.dir/rational.c.obj: ../unsigned.h
 
 CMakeFiles/pi.dir/unsigned.c.obj: ../list.h
 CMakeFiles/pi.dir/unsigned.c.obj: ../unsigned.c

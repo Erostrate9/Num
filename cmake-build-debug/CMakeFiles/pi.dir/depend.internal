@@ -13,6 +13,13 @@ CMakeFiles/pi.dir/main.c.obj
  C:/Users/75912/Desktop/pi/big_int.h
  C:/Users/75912/Desktop/pi/list.h
  C:/Users/75912/Desktop/pi/main.c
+ C:/Users/75912/Desktop/pi/rational.h
+ C:/Users/75912/Desktop/pi/unsigned.h
+CMakeFiles/pi.dir/rational.c.obj
+ C:/Users/75912/Desktop/pi/big_int.h
+ C:/Users/75912/Desktop/pi/list.h
+ C:/Users/75912/Desktop/pi/rational.c
+ C:/Users/75912/Desktop/pi/rational.h
  C:/Users/75912/Desktop/pi/unsigned.h
 CMakeFiles/pi.dir/unsigned.c.obj
  C:/Users/75912/Desktop/pi/list.h
