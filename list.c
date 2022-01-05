@@ -68,7 +68,9 @@ void remove_front(List* list)
 
     Link* p = list->head;
     list->head = list->head->next;
-    list->head->prior=NULL;
+    if(list->head!=NULL){
+        list->head->prior=NULL;
+    }
     free(p);
     list->size--;
 }

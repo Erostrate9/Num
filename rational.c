@@ -44,6 +44,7 @@ static Unsigned* unsigned_gcd(const Unsigned* x, const Unsigned* y)
         // M = N;
         // N = Rem;
         unsigned_div(M,N,&rem);
+
         Unsigned* p=M;
         M = unsigned_copy(N);
         unsigned_free(p);
@@ -202,6 +203,13 @@ BigRat* big_rat_add(const BigRat* x, const BigRat* y)
         big_rat_free(y1);
         big_rat_free(res);
         return x1;
+    }else if(unsigned_cmp(x1->denom->val,y1->denom->val)==0){
+        res->denom=big_int_copy(x1->denom);
+        res->num=big_int_add(x1->num,y1->num);
+        big_int_cancel(res->num,res->denom);
+        big_rat_free(x1);
+        big_rat_free(y1);
+        return res;
     }else{
         res->denom=big_int_mul(x1->denom,y1->denom);
         BigInt* x1n=big_int_mul(x1->num,y1->denom);
@@ -220,36 +228,11 @@ BigRat* big_rat_add(const BigRat* x, const BigRat* y)
 BigRat* big_rat_sub(const BigRat* x, const BigRat* y)
 {
     // 在此处补充完整
-    BigRat* x1=big_rat_copy(x);
     BigRat* y1=big_rat_copy(y);
-
-    BigRat* res=get_big_rat();
-    big_int_cancel(x1->num,x1->denom);
-    big_int_cancel(y1->num,y1->denom);
-    if(big_int_is_zero(x1->num)){
-        y1->num->sign=y1->num->sign==plus?minus:plus;
-        big_rat_free(x1);
-        big_rat_free(res);
-        return y1;
-    }else if(big_int_is_zero(y1->num)){
-        big_rat_free(y1);
-        big_rat_free(res);
-        return x1;
-    }else{
-        y1->num->sign=y1->num->sign==plus?minus:plus;
-        res->denom=big_int_mul(x1->denom,y1->denom);
-        BigInt* x1n=big_int_mul(x1->num,y1->denom);
-        BigInt* y1n=big_int_mul(y1->num,x1->denom);
-        res->num=big_int_add(x1n,y1n);
-        big_int_cancel(res->num,res->denom);
-
-        big_int_free(x1n);
-        big_int_free(y1n);
-        big_rat_free(x1);
-        big_rat_free(y1);
-        return res;
-    }
-
+    y1->num->sign=(y1->num->sign==plus?minus:plus);
+    BigRat* res=big_rat_add(x,y1);
+    big_rat_free(y1);
+    return res;
 }
 
 BigRat* big_rat_mul(const BigRat* x, const BigRat* y)

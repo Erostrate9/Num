@@ -1,6 +1,5 @@
 
 #include <stdlib.h>
-#include <stdio.h>
 #include "big_int.h"
 
 // -----------------------------------------------------------------------------
@@ -129,7 +128,6 @@ BigInt* big_int_add(const BigInt* x, const BigInt* y)
         if(unsigned_cmp(x->val,y->val)==-1){
             res->sign=minus;
             res->val=unsigned_sub(y->val,x->val);
-
         }else{
             res->sign=plus;
             res->val=unsigned_sub(x->val,y->val);
@@ -157,7 +155,6 @@ BigInt* big_int_sub(const BigInt* x, const BigInt* y)
         if(unsigned_cmp(x->val,y->val)==-1){
             res->sign=minus;
             res->val=unsigned_sub(y->val,x->val);
-
         }else{
             res->sign=plus;
             res->val=unsigned_sub(x->val,y->val);
@@ -186,23 +183,33 @@ BigInt* big_int_div(const BigInt* x, const BigInt* y, BigInt** rem)
 {
     // 在此处补充完整
     if(is_zero(x)){
-        BigInt* p=*rem;
-        *rem=big_int_from_ll(0);
-        free(p);
+        if(rem!=NULL){
+            BigInt* p=*rem;
+            *rem=big_int_from_ll(0);
+            free(p);
+        }
         return big_int_from_ll(0);
     }else if(is_zero(y)){
-        printf("/nArithmeticException: / by zero/n");
-        *rem=NULL;
+        //printf("/nArithmeticException: / by zero/n");
         return NULL;
     }else{
         BigInt* res=get_big_int();
-        if(*rem==NULL){
-            *rem = get_big_int();
+        if(rem!=NULL){
+            if(*rem==NULL){
+                *rem = get_big_int();
+            }
+            Unsigned* p1=(*rem)->val;
+            (*rem)->val=unsigned_from_ll(0);
+            unsigned_free(p1);
+            (*rem)->sign=x->sign;
         }
-        (*rem)->val=unsigned_from_ll(0);
-        (*rem)->sign=x->sign;
         res->sign=(x->sign==y->sign?plus:minus);
-        res->val=unsigned_div(x->val,y->val,&((*rem)->val));
+        if(rem!=NULL){
+            res->val=unsigned_div(x->val,y->val,&((*rem)->val));
+        }else{
+            res->val=unsigned_div(x->val,y->val,NULL);
+        }
+
         return res;
     }
 }

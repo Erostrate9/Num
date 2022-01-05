@@ -7,6 +7,7 @@
 static const Int ignore = 42;
 
 // 在此处可定义若干辅助函数，以供定义其它函数时使用
+
 Unsigned* Normalize(const Unsigned* x)
 {
     // 拷贝x，保证size>0，将开头多余的0去除并返回。
@@ -18,6 +19,51 @@ Unsigned* Normalize(const Unsigned* x)
         remove_front(res);
     }
     return res;
+}
+
+//0<= i <x->size
+Link* get_i(const Unsigned* x,int i){
+    if(i >= x->size){
+        return NULL;
+    }
+    Link* x_i=x->head;
+    for (int j = 0; j < i; ++j) {
+        x_i=x_i->next;
+    }
+    return x_i;
+}
+Unsigned* get_h2i(const Unsigned* x,int i){
+    if(i >= x->size){
+        return NULL;
+    }
+    Unsigned* res = get_list();
+    Link* x_i=get_i(x,i);
+    for (Link *j = x->head; j !=x_i ;j=j->next) {
+        insert_back(res,j->n,ignore);
+    }
+    insert_back(res,x_i->n,ignore);
+    return res;
+}
+Unsigned* get_i2t(const Unsigned* x,int i){
+    if(i >= x->size){
+        return NULL;
+    }
+    Unsigned* res = get_list();
+    Link* x_i=get_i(x,i);
+    for (Link *j = x_i; j !=x->tail ;j=j->next) {
+        insert_back(res,j->n,ignore);
+    }
+    insert_back(res,x->tail->n,ignore);
+    return res;
+
+}
+Unsigned* cat(const Unsigned* x,const Unsigned* y){
+    Unsigned* x1=unsigned_copy(x);
+    if (y==NULL)
+        return x1;
+    for (Link* link = y->head; link; link = link->next)
+        insert_back(x1, link->n, link->x);
+    return x1;
 }
 // -----------------------------------------------------------------------------
 // long long整型x转换成Unsigned数，并返回
@@ -219,7 +265,9 @@ Unsigned* unsigned_mul(const Unsigned* x, const Unsigned* y)
         k++;
         pY=pY->prior;
     }
-
+    unsigned_free(x1);
+    unsigned_free(temp);
+    unsigned_free(y1);
     return res;
 }
 
@@ -237,30 +285,64 @@ Unsigned* unsigned_div(const Unsigned* x, const Unsigned* y, Unsigned** rem)
             *rem=unsigned_from_ll(0);
         return unsigned_from_ll(1);
     }else if(k==1){
-        Unsigned* res=unsigned_from_ll(0);
         Unsigned* x1=unsigned_copy(x);
+        Unsigned* res=get_list();
+        Unsigned* remainder=NULL;
+        int i = y->size-1;
+        do {
+            Unsigned* temp=get_h2i(x1,i-(x->size-x1->size));
+            Unsigned* ac=get_list();
+            //try to find quo
+            int j;
+            for (j=9; j >0 ; --j) {
+                Unsigned* op2=unsigned_from_ll(j);
+
+                Unsigned* p1=ac;
+                ac=unsigned_mul(y,op2);
+                unsigned_free(p1);
+                unsigned_free(op2);
+
+                if(unsigned_cmp(temp,ac)>=0){
+                    insert_back(res,j,ignore);
+                    break;
+                }
+            }
+            if(j==0){
+                insert_back(res,0,ignore);
+                Unsigned* p2=ac;
+                ac=unsigned_from_ll(0);
+                unsigned_free(p2);
+            }
+            i++;
+            Unsigned* A=unsigned_sub(temp,ac);
+            Unsigned* B=get_i2t(x,i);
+            Unsigned* C=remainder;
+            remainder=cat(A,B);
+            unsigned_free(A);
+            unsigned_free(B);
+            unsigned_free(C);
+            if(i<x->size){
+                Unsigned* p3=x1;
+                x1=unsigned_copy(remainder);
+                unsigned_free(p3);
+            }
+            unsigned_free(temp);
+            unsigned_free(ac);
+        }while(i<x->size);
+
         if(rem!=NULL){
             Unsigned* p1=*rem;
-            *rem=unsigned_from_ll(0);
+            while(remainder->head && remainder->head->n==0 && remainder ->head->next){
+                remove_front(res);
+            }
+            *rem=unsigned_copy(remainder);
             unsigned_free(p1);
         }
-        Unsigned* one=unsigned_from_ll(1);
-        do
-        {
-            Unsigned* p2=x1;
-            x1=unsigned_sub(x1,y);
-            unsigned_free(p2);
-
-            Unsigned* p3=res;
-            res=unsigned_add(res,one);
-            unsigned_free(p3);
-        } while (unsigned_cmp(x1,y)>=0);
-        if(rem!=NULL){
-            Unsigned* p4=*rem;
-            *rem=x1;
-            unsigned_free(p4);
+        while(res->head && res->head->n==0 && res ->head->next){
+            remove_front(res);
         }
-        unsigned_free(one);
+        unsigned_free(x1);
+        unsigned_free(remainder);
         return res;
     }
 }
