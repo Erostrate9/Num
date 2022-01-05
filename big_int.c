@@ -36,7 +36,7 @@ BigInt* big_int_from_ll(long long x)
 
 BigInt* big_int_copy(const BigInt* x)
 {
-    if (x!=NULL)
+    if (x==NULL)
         return 0;
 
     BigInt* y = get_big_int();
