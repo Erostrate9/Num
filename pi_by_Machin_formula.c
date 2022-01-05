@@ -34,7 +34,7 @@ const char pi_string[] =
 // -----------------------------------------------------------------------------
 
 // 在此处可定义若干辅助函数，以供定义其它函数时使用
-int get_acc(char* pi_string,char* pi){
+int get_acc(const char* pi_string,char* pi){
     int acc=0;
     for (int i = 0; pi[i]!='\0'; ++i) {
         if (pi_string[i]==pi[i]){

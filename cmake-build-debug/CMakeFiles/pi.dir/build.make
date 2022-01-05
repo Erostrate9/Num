@@ -76,18 +76,18 @@ include CMakeFiles/pi.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/pi.dir/flags.make
 
-CMakeFiles/pi.dir/main.c.obj: CMakeFiles/pi.dir/flags.make
-CMakeFiles/pi.dir/main.c.obj: ../main.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\75912\Desktop\pi\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/pi.dir/main.c.obj"
-	D:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\pi.dir\main.c.obj   -c C:\Users\75912\Desktop\pi\main.c
+CMakeFiles/pi.dir/pi_by_Machin_formula.c.obj: CMakeFiles/pi.dir/flags.make
+CMakeFiles/pi.dir/pi_by_Machin_formula.c.obj: ../pi_by_Machin_formula.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\75912\Desktop\pi\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/pi.dir/pi_by_Machin_formula.c.obj"
+	D:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\pi.dir\pi_by_Machin_formula.c.obj   -c C:\Users\75912\Desktop\pi\pi_by_Machin_formula.c
 
-CMakeFiles/pi.dir/main.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/pi.dir/main.c.i"
-	D:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\75912\Desktop\pi\main.c > CMakeFiles\pi.dir\main.c.i
+CMakeFiles/pi.dir/pi_by_Machin_formula.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/pi.dir/pi_by_Machin_formula.c.i"
+	D:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\75912\Desktop\pi\pi_by_Machin_formula.c > CMakeFiles\pi.dir\pi_by_Machin_formula.c.i
 
-CMakeFiles/pi.dir/main.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/pi.dir/main.c.s"
-	D:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\75912\Desktop\pi\main.c -o CMakeFiles\pi.dir\main.c.s
+CMakeFiles/pi.dir/pi_by_Machin_formula.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/pi.dir/pi_by_Machin_formula.c.s"
+	D:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\75912\Desktop\pi\pi_by_Machin_formula.c -o CMakeFiles\pi.dir\pi_by_Machin_formula.c.s
 
 CMakeFiles/pi.dir/list.c.obj: CMakeFiles/pi.dir/flags.make
 CMakeFiles/pi.dir/list.c.obj: ../list.c
@@ -143,7 +143,7 @@ CMakeFiles/pi.dir/rational.c.s: cmake_force
 
 # Object files for target pi
 pi_OBJECTS = \
-"CMakeFiles/pi.dir/main.c.obj" \
+"CMakeFiles/pi.dir/pi_by_Machin_formula.c.obj" \
 "CMakeFiles/pi.dir/list.c.obj" \
 "CMakeFiles/pi.dir/unsigned.c.obj" \
 "CMakeFiles/pi.dir/big_int.c.obj" \
@@ -152,7 +152,7 @@ pi_OBJECTS = \
 # External object files for target pi
 pi_EXTERNAL_OBJECTS =
 
-pi.exe: CMakeFiles/pi.dir/main.c.obj
+pi.exe: CMakeFiles/pi.dir/pi_by_Machin_formula.c.obj
 pi.exe: CMakeFiles/pi.dir/list.c.obj
 pi.exe: CMakeFiles/pi.dir/unsigned.c.obj
 pi.exe: CMakeFiles/pi.dir/big_int.c.obj

@@ -196,32 +196,32 @@ list.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\pi.dir\build.make CMakeFiles/pi.dir/list.c.s
 .PHONY : list.c.s
 
-main.obj: main.c.obj
+pi_by_Machin_formula.obj: pi_by_Machin_formula.c.obj
 
-.PHONY : main.obj
+.PHONY : pi_by_Machin_formula.obj
 
 # target to build an object file
-main.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\pi.dir\build.make CMakeFiles/pi.dir/main.c.obj
-.PHONY : main.c.obj
+pi_by_Machin_formula.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\pi.dir\build.make CMakeFiles/pi.dir/pi_by_Machin_formula.c.obj
+.PHONY : pi_by_Machin_formula.c.obj
 
-main.i: main.c.i
+pi_by_Machin_formula.i: pi_by_Machin_formula.c.i
 
-.PHONY : main.i
+.PHONY : pi_by_Machin_formula.i
 
 # target to preprocess a source file
-main.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\pi.dir\build.make CMakeFiles/pi.dir/main.c.i
-.PHONY : main.c.i
+pi_by_Machin_formula.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\pi.dir\build.make CMakeFiles/pi.dir/pi_by_Machin_formula.c.i
+.PHONY : pi_by_Machin_formula.c.i
 
-main.s: main.c.s
+pi_by_Machin_formula.s: pi_by_Machin_formula.c.s
 
-.PHONY : main.s
+.PHONY : pi_by_Machin_formula.s
 
 # target to generate assembly for a file
-main.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\pi.dir\build.make CMakeFiles/pi.dir/main.c.s
-.PHONY : main.c.s
+pi_by_Machin_formula.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\pi.dir\build.make CMakeFiles/pi.dir/pi_by_Machin_formula.c.s
+.PHONY : pi_by_Machin_formula.c.s
 
 rational.obj: rational.c.obj
 
@@ -292,9 +292,9 @@ help:
 	@echo ... list.obj
 	@echo ... list.i
 	@echo ... list.s
-	@echo ... main.obj
-	@echo ... main.i
-	@echo ... main.s
+	@echo ... pi_by_Machin_formula.obj
+	@echo ... pi_by_Machin_formula.i
+	@echo ... pi_by_Machin_formula.s
 	@echo ... rational.obj
 	@echo ... rational.i
 	@echo ... rational.s

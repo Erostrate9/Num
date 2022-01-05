@@ -9,11 +9,11 @@ CMakeFiles/pi.dir/big_int.c.obj: ../unsigned.h
 CMakeFiles/pi.dir/list.c.obj: ../list.c
 CMakeFiles/pi.dir/list.c.obj: ../list.h
 
-CMakeFiles/pi.dir/main.c.obj: ../big_int.h
-CMakeFiles/pi.dir/main.c.obj: ../list.h
-CMakeFiles/pi.dir/main.c.obj: ../main.c
-CMakeFiles/pi.dir/main.c.obj: ../rational.h
-CMakeFiles/pi.dir/main.c.obj: ../unsigned.h
+CMakeFiles/pi.dir/pi_by_Machin_formula.c.obj: ../big_int.h
+CMakeFiles/pi.dir/pi_by_Machin_formula.c.obj: ../list.h
+CMakeFiles/pi.dir/pi_by_Machin_formula.c.obj: ../pi_by_Machin_formula.c
+CMakeFiles/pi.dir/pi_by_Machin_formula.c.obj: ../rational.h
+CMakeFiles/pi.dir/pi_by_Machin_formula.c.obj: ../unsigned.h
 
 CMakeFiles/pi.dir/rational.c.obj: ../big_int.h
 CMakeFiles/pi.dir/rational.c.obj: ../list.h

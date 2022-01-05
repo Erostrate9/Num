@@ -6,7 +6,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_C
   "C:/Users/75912/Desktop/pi/big_int.c" "C:/Users/75912/Desktop/pi/cmake-build-debug/CMakeFiles/pi.dir/big_int.c.obj"
   "C:/Users/75912/Desktop/pi/list.c" "C:/Users/75912/Desktop/pi/cmake-build-debug/CMakeFiles/pi.dir/list.c.obj"
-  "C:/Users/75912/Desktop/pi/main.c" "C:/Users/75912/Desktop/pi/cmake-build-debug/CMakeFiles/pi.dir/main.c.obj"
+  "C:/Users/75912/Desktop/pi/pi_by_Machin_formula.c" "C:/Users/75912/Desktop/pi/cmake-build-debug/CMakeFiles/pi.dir/pi_by_Machin_formula.c.obj"
   "C:/Users/75912/Desktop/pi/rational.c" "C:/Users/75912/Desktop/pi/cmake-build-debug/CMakeFiles/pi.dir/rational.c.obj"
   "C:/Users/75912/Desktop/pi/unsigned.c" "C:/Users/75912/Desktop/pi/cmake-build-debug/CMakeFiles/pi.dir/unsigned.c.obj"
   )
