@@ -34,11 +34,13 @@ const char pi_string[] =
 // -----------------------------------------------------------------------------
 
 // 在此处可定义若干辅助函数，以供定义其它函数时使用
-int get_acc(const char* pi_string,char* pi){
+int get_acc(const char* pi_string,const char* pi){
     int acc=0;
     for (int i = 0; pi[i]!='\0'; ++i) {
         if (pi_string[i]==pi[i]){
             acc++;
+        }else{
+            break;
         }
     }
     return (acc-2)>=0?(acc-2):0;
@@ -161,12 +163,12 @@ char* to_str(const BigRat* pi, int items)
     big_int_power10(x,2*items);
     BigInt* pi_dec=big_int_div(x,pi->denom,NULL);
     char* pi_src=big_int_to_str(pi_dec);
-    int len=(int)pi_dec->val->size+2;
-    char*p = (char *)malloc((len)*sizeof(char)); // 申请新的"数组 ";
+    int len=(int)pi_dec->val->size;
+    char*p = (char *)malloc((len+2)*sizeof(char)); // 申请新的"数组 ";
     p[0]=pi_src[0];
     p[1]='.';
     int i;
-    for(i=1;i<len-1;i++){	// 将原来的数组copy到新申请的更大的数组中
+    for(i=1;i<len;i++){	// 将原来的数组copy到新申请的更大的数组中
         p[i+1]=pi_src[i];
     }
     p[i+1]='\0';
@@ -185,13 +187,14 @@ int main(void)
     BigRat* pi=get_pi(items);
 //    BigRat* pi=big_rat_from_ll(5359397032,1706489875);
     char* pi_str=to_str(pi,items);
-
+    int acc =get_acc(pi_string,pi_str);
+    pi_str[acc+2]='\0';
     printf("numerator\t= %s\n",big_int_to_str(pi->num));
     printf("denominator\t= %s\n",big_int_to_str(pi->denom));
-    printf("pi\t= %s\n\n",to_str(pi,items));
+    printf("pi\t= %s\n\n",pi_str);
     printf("numerator\t:%lld digits\n",pi->num->val->size);
     printf("denominator\t:%lld digits\n",pi->denom->val->size);
-    printf("pi decimal places : %d accurate\n",get_acc(pi_string,pi_str));
+    printf("pi decimal places : %d accurate\n",acc);
 
 
 }
