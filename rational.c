@@ -43,7 +43,8 @@ static Unsigned* unsigned_gcd(const Unsigned* x, const Unsigned* y)
         // Rem = M % N;
         // M = N;
         // N = Rem;
-        unsigned_div(M,N,&rem);
+        Unsigned *p1=unsigned_div(M,N,&rem);
+        unsigned_free(p1);
 
         Unsigned* p=M;
         M = unsigned_copy(N);
@@ -189,39 +190,37 @@ void big_rat_to_ll(const BigRat* br, long long* num, long long* denom)
 BigRat* big_rat_add(const BigRat* x, const BigRat* y)
 {
     // 在此处补充完整
-    BigRat* x1=big_rat_copy(x);
-    BigRat* y1=big_rat_copy(y);
-
-    BigRat* res=get_big_rat();
-    big_int_cancel(x1->num,x1->denom);
-    big_int_cancel(y1->num,y1->denom);
-    if(big_int_is_zero(x1->num)){
-        big_rat_free(x1);
-        big_rat_free(res);
-        return y1;
-    }else if(big_int_is_zero(y1->num)){
-        big_rat_free(y1);
-        big_rat_free(res);
-        return x1;
-    }else if(unsigned_cmp(x1->denom->val,y1->denom->val)==0){
-        res->denom=big_int_copy(x1->denom);
-        res->num=big_int_add(x1->num,y1->num);
-        big_int_cancel(res->num,res->denom);
-        big_rat_free(x1);
-        big_rat_free(y1);
-        return res;
+//    big_int_cancel(x1->num,x1->denom);
+//    big_int_cancel(y1->num,y1->denom);
+    if(big_int_is_zero(x->num)||big_int_is_zero(y->num)){
+        return big_rat_from_ll(0,1);
     }else{
-        res->denom=big_int_mul(x1->denom,y1->denom);
-        BigInt* x1n=big_int_mul(x1->num,y1->denom);
-        BigInt* y1n=big_int_mul(y1->num,x1->denom);
-        res->num=big_int_add(x1n,y1n);
-        big_int_cancel(res->num,res->denom);
+            BigRat* res=get_big_rat();
+            BigRat* x1=big_rat_copy(x);
+            BigRat* y1=big_rat_copy(y);
+            x1->num->sign=(x1->num->sign==x1->denom->sign?plus:minus);
+            y1->num->sign=(y1->num->sign==y1->denom->sign?plus:minus);
+            x1->denom->sign=y1->denom->sign=plus;
+        if(unsigned_cmp(x->denom->val,y->denom->val)==0){
+            res->denom=big_int_copy(x->denom);
+            res->num=big_int_add(x1->num,y1->num);
+            big_int_cancel(res->num,res->denom);
+            big_rat_free(x1);
+            big_rat_free(y1);
+            return res;
+        }else{
+            res->denom=big_int_mul(x1->denom,y1->denom);
+            BigInt* x1n=big_int_mul(x1->num,y1->denom);
+            BigInt* y1n=big_int_mul(y1->num,x1->denom);
+            res->num=big_int_add(x1n,y1n);
+            big_int_cancel(res->num,res->denom);
 
-        big_int_free(x1n);
-        big_int_free(y1n);
-        big_rat_free(x1);
-        big_rat_free(y1);
-        return res;
+            big_int_free(x1n);
+            big_int_free(y1n);
+            big_rat_free(x1);
+            big_rat_free(y1);
+            return res;
+        }
     }
 }
 
@@ -238,36 +237,18 @@ BigRat* big_rat_sub(const BigRat* x, const BigRat* y)
 BigRat* big_rat_mul(const BigRat* x, const BigRat* y)
 {
     // 在此处补充完整
-    BigRat* x1=big_rat_copy(x);
-    BigRat* y1=big_rat_copy(y);
-    BigRat* res=get_big_rat();
+//    BigRat* x1=big_rat_copy(x);
+//    BigRat* y1=big_rat_copy(y);
+//    big_int_cancel(x1->num,x1->denom);
+//    big_int_cancel(y1->num,y1->denom);
 
-    big_int_cancel(x1->num,x1->denom);
-    big_int_cancel(y1->num,y1->denom);
-
-    if(big_int_is_zero(x1->num)){
-        big_rat_free(y1);
-        big_rat_free(res);
-        return x1;
-    }else if(big_int_is_zero(y1->num)){
-        big_rat_free(x1);
-        big_rat_free(res);
-        return y1;
-    }else if (big_int_is_one(x1->num)&&big_int_is_one(x1->denom)){
-        big_rat_free(x1);
-        big_rat_free(res);
-        return y1;
-    }else if (big_int_is_one(y1->num)&&big_int_is_one(y1->denom)){
-        big_rat_free(y1);
-        big_rat_free(res);
-        return x1;
+    if(big_int_is_zero(x->num)||big_int_is_zero(y->num)){
+        return big_rat_from_ll(0,1);
     }else{
-        res->denom=big_int_mul(x1->denom,y1->denom);
-        res->num=big_int_mul(x1->num,y1->num);
+        BigRat* res=get_big_rat();
+        res->denom=big_int_mul(x->denom,y->denom);
+        res->num=big_int_mul(x->num,y->num);
         big_int_cancel(res->num,res->denom);
-
-        big_rat_free(x1);
-        big_rat_free(y1);
         return res;
     }
 }

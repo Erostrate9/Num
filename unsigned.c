@@ -277,12 +277,18 @@ Unsigned* unsigned_div(const Unsigned* x, const Unsigned* y, Unsigned** rem)
     // 其中第一个参数表示被除数，第二个参数表示除数，第三个参数用于返回余数。
     int k=unsigned_cmp(x,y);
     if(k==-1){
-        if(rem!=NULL)
+        if(rem!=NULL){
+            Unsigned *p1=*rem;
             *rem=unsigned_copy(x);
+            unsigned_free(p1);
+        }
         return unsigned_from_ll(0);
     }else if(k==0){
-        if(rem!=NULL)
+        if(rem!=NULL){
+            Unsigned *p1=*rem;
             *rem=unsigned_from_ll(0);
+            unsigned_free(p1);
+        }
         return unsigned_from_ll(1);
     }else if(k==1){
         Unsigned* x1=unsigned_copy(x);

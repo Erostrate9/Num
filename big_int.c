@@ -186,7 +186,7 @@ BigInt* big_int_div(const BigInt* x, const BigInt* y, BigInt** rem)
         if(rem!=NULL){
             BigInt* p=*rem;
             *rem=big_int_from_ll(0);
-            free(p);
+            big_int_free(p);
         }
         return big_int_from_ll(0);
     }else if(is_zero(y)){
